@@ -1,0 +1,5 @@
+# likely won't change without a massive refactor
+yq-go binary: statically-linked-binary usr/bin/yq
+
+# not a an official Debian archive package, so closes no ITP bug
+yq-go binary: initial-upload-closes-no-bugs

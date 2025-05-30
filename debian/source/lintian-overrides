@@ -1,0 +1,8 @@
+# I don't intend on strictly complying with Debian packaging policy
+yq-go source: empty-upstream-sources
+
+# I don't intend on strictly complying with Debian packaging policy
+yq-go source: unsupported-source-format
+
+# possible issue with lintian not supporting git source format
+yq-go source: debian-adds-git-control-dir .git/
