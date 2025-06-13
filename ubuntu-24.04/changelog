@@ -1,0 +1,10 @@
+yq-go (4.45.2-1ubuntu1) noble; urgency=medium
+
+  * Added windows arm builds (Thanks @albertocavalcante, @ShukantPal)
+  * Added s390x platform support (Thanks @ashokpariya0)
+  * Additionally push docker images to ghcr.io (Thanks @reegnz)
+  * Fixing add when there is no node match #2325
+  * sort_by works on maps
+  * Bumped dependencies
+
+ -- Conner Crosby <cavcrosby@gmail.com>  Mon, 26 May 2025 12:42:01 -0400

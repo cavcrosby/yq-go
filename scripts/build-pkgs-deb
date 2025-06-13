@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Builds the Debian packages for debian-like operating systems.
+
+set -eo pipefail
+
+if ! [ -d "${YQ_REPO_PATH}" ]; then
+    git clone \
+        --branch "${VERSION_YQ}" \
+        "https://github.com/mikefarah/yq.git" \
+        "${YQ_REPO_PATH}"
+
+    cp --recursive --dereference "${OS}" "${YQ_REPO_PATH}/debian"
+
+    # using subshell will not affect original PWD
+    (
+        cd "${YQ_REPO_PATH}"
+        go mod vendor
+    )
+fi
+
+docker build "$@" "${PWD}"
+docker run --rm --mount "type=bind,src=${PWD},dst=/build" "${IMAGE}"

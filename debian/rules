@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+export GOCACHE = ${CURDIR}/build/gocache
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	go build -mod="vendor" -buildmode="pie" -ldflags "-s -w"
+	./yq shell-completion "bash" > "./yq.bash"
+	./yq shell-completion "zsh" > "./yq.zsh"
+	./yq shell-completion "fish" > "./yq.fish"
+	./scripts/generate-man-page-md.sh
+	./scripts/generate-man-page.sh
+
+override_dh_auto_install:
+	install -D --mode 755 "./yq" "./debian/yq-go/usr/bin/yq"
+	install -D --mode 644 "./yq.bash" "./debian/yq-go/usr/share/bash-completion/completions/yq"
+	install -D --mode 644 "./yq.zsh" "./debian/yq-go/usr/share/zsh/vendor-completions/_yq"
+	install -D --mode 644 "./yq.fish" "./debian/yq-go/usr/share/fish/vendor_completions.d/yq.fish"
+	install -D --mode 644 "./LICENSE" "./debian/yq-go/usr/share/yq/LICENSE"
+	install -D --mode 644 "./yq.1" "./debian/yq-go/usr/share/man/man1/yq.1"
+
+override_dh_auto_test:
+	go test -v ./...
+
+override_dh_auto_clean:
+	rm --force "./yq.bash" "./yq.zsh" "./yq.fish"
