@@ -1,0 +1,7 @@
+.python-version
+node_modules/
+/*.build
+/*.buildinfo
+/*.changes
+/*.deb
+/yq

@@ -1,0 +1,41 @@
+# syntax=docker/dockerfile-upstream:master
+ARG os="noble"
+FROM ubuntu:${os}
+
+ARG version_yq
+ARG version_go
+ARG pkg_revision
+
+ENV USER_NAME="ubuntu"
+ENV DEBIAN_FRONTEND="noninteractive"
+COPY "./yq/debian/control" "./yq/debian/changelog" "/build/yq/debian/"
+WORKDIR "/build/yq"
+
+RUN <<_EOF_
+apt-get update
+apt-get install \
+    --assume-yes \
+    --no-install-recommends \
+    "build-essential" \
+    "devscripts" \
+    "equivs" \
+    "lintian"
+
+mk-build-deps "./debian/control"
+apt-get install \
+    --assume-yes \
+    --no-install-recommends \
+    "./yq-go-build-deps_${version_yq#v}${pkg_revision}_all.deb"
+
+ln --symbolic --force "/usr/lib/go-${version_go}/bin/go" "/usr/local/bin/go"
+_EOF_
+
+USER "${USER_NAME}"
+ENTRYPOINT [ \
+    "debuild", \
+    "--prepend-path=/usr/local/bin", \
+    "--unsigned-source", \
+    "--unsigned-buildinfo", \
+    "--unsigned-changes", \
+    "--build=binary" \
+]

@@ -1,0 +1,6 @@
+usr/bin
+usr/share/yq
+usr/share/man/man1
+usr/share/bash-completion/completions
+usr/share/zsh/vendor-completions
+usr/share/fish/vendor_completions.d
