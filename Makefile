@@ -65,14 +65,14 @@ _check_executables := $(foreach exec,${executables},$(if $(shell command -v ${ex
 ${HELP}:
 	# inspired by the makefiles of the Linux kernel and Mercurial
 >	@printf '%s\n' 'Common make targets:'
->	@printf '%s\n' '  ${SETUP}                 - installs the distro-independent dependencies for this'
+>	@printf '%s\n' '  ${SETUP}                 - install the distro-independent dependencies for this'
 >	@printf '%s\n' '                          repository'
->	@printf '%s\n' '  ${DEB}                   - makes the repository'\''s debian packages'
->	@printf '%s\n' '  ${CLEAN}                 - removes files generated from targets'
+>	@printf '%s\n' '  ${DEB}                   - make the repository'\''s debian packages'
+>	@printf '%s\n' '  ${CLEAN}                 - remove files generated from targets'
 >	@printf '%s\n' 'Common make configurations (e.g. make [config]=1 [targets]):'
 >	@printf '%s\n' '  OS                        - the operating system (e.g. ubuntu-24.04) to build'
 >	@printf '%s\n' '                              packages for'
->	@printf '%s\n' '  DEBUG_PLAIN_STDOUT        - set docker build to output in plain text'
+>	@printf '%s\n' '  DEBUG_PLAIN_STDOUT        - sets docker build to output in plain text'
 
 .PHONY: ${SETUP}
 ${SETUP}:
