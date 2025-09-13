@@ -83,11 +83,11 @@ ${SETUP}:
 
 .PHONY: ${DEB}
 ${DEB}: docker_build_options = --file "${DOCKERFILE_PATH}" \
-		--build-arg os="${CODENAME}" \
-		--build-arg version_yq="${VERSION_YQ}" \
-		--build-arg version_go="${VERSION_GO}" \
-		--build-arg pkg_revision="${PKG_REVISION}" \
-		--tag "${IMAGE}"
+			--build-arg os="${CODENAME}" \
+			--build-arg version_yq="${VERSION_YQ}" \
+			--build-arg version_go="${VERSION_GO}" \
+			--build-arg pkg_revision="${PKG_REVISION}" \
+			--tag "${IMAGE}"
 ifneq ($(findstring ${DEBUG_PLAIN_STDOUT},${TRUTHY_VALUES}),)
 ${DEB}: export BUILDKIT_PROGRESS = plain
 ${DEB}: docker_build_options += --no-cache
