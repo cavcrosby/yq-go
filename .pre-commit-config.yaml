@@ -12,7 +12,7 @@ repos:
     hooks:
       - id: markdownlint-cli2
 
-  - repo: https://github.com/koalaman/shellcheck-precommit
+  - repo: https://github.com/koalaman/shellcheck-precommit.git
     rev: v0.10.0
     hooks:
       - id: shellcheck
