@@ -108,7 +108,7 @@ ${DEB_SIGN}:
 		--entrypoint "/bin/bash" \
 		--env "GNUPGHOME=/build/yq/.gnupg" \
 		--mount "type=bind,src=${CURDIR},dst=/build" \
-		--mount "type=bind,src=${HOME}/.gnupg,dst=/build/yq/.gnupg" \
+		--mount "type=bind,src=$${HOME}/.gnupg,dst=/build/yq/.gnupg" \
 		"${IMAGE}" \
 		"-c" \
 		'debsign --re-sign -k"1ABD9EFEA4F96AED898658E07F8676EF9143D3E8"'
