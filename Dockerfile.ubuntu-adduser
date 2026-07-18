@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile-upstream:master
-ARG os="noble"
+ARG os="resolute"
 FROM ubuntu:${os}
 
 ARG version_yq

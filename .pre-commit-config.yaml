@@ -8,7 +8,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2.git
-    rev: v0.18.1
+    rev: v0.23.1
     hooks:
       - id: markdownlint-cli2
 
@@ -26,4 +26,4 @@ repos:
         types:
           - markdown
         additional_dependencies:
-          - prettier@3.6.2
+          - prettier@3.9.5
